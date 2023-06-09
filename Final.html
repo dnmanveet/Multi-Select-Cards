@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --pinintrest-red: #c8232c;
+            --facebook-blue: #3b5998;
+            --instagram-pink: #C13584;
+            --behance-blue: #1769ff;
+            --dribble-pink: #ea4c89;
+            --twitter-blue: #1DA1F2;
+            --blogger-orange: #FF8000;
+            --linkedin-blue:  #0072b1;
+        }
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+        .whole{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(243, 242, 249);
+            /* column-gap: 5%; */
+            row-gap: 3%;
+        }
+        .card{
+            /* height: 400px;
+            width: 300px; */
+            height: 325px;
+            width: 275px;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 2px 2px 1.5em 2px rgb(244, 243, 252);
+            margin: 2rem;
+        }
+        .card:hover{
+            transform: scale(1.05);
+            z-index: 1;
+        }
+        .top-icon-left{
+            position: absolute;
+            top: 0px;
+            margin-left:10px; 
+            margin-top: 10px; 
+            font-size: 25px;
+            color: white;
+        }
+        .top-icon-right{
+            position: absolute;
+            width: 25px;
+            height: 25px;
+        }
+        .card .remaining-part>*{
+            color: grey;
+        }
+        .card input:checked ~ .remaining-part>*{
+            color: white;
+        }
+        .tick {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            height: 20px;
+            width: 20px;
+            border:2px solid white;
+            border-radius: 3px;
+            background-color: transparent;
+        }
+        .tick::after{
+            content: "";
+            position: absolute;
+            display: none;
+            right: 2px;
+            left: 7px;
+            bottom: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .card input{
+            width: 0px;
+            height:0px;
+        }
+        .card .remaining-part{
+            background-color: white;
+        }
+        .card input:checked ~ .tick::after{
+            display:block;
+            transform: rotate(45deg);
+        }
+
+        /*-------------------------------------------------------------------------------*/
+        #card-1 .first-part{
+            background-color: var(--pinintrest-red);
+        }
+        #card-1 .profile-pic{
+            box-shadow: 2px 2px 1.5em 2px rgba(200, 35, 44, 0.2);
+        }
+        #card-1 input:checked ~ .tick{
+            border:2px solid var(--pinintrest-red);
+        }
+        #card-1 input:checked ~ .tick::after{
+            border: solid var(--pinintrest-red);
+            border-width: 0 2px 2px 0;
+        }
+        #card-1 input:checked ~ .first-part{
+            background-color: white;
+        }
+        #card-1 input:checked ~ .remaining-part{
+            background-color: var(--pinintrest-red);
+        }
+        #card-1 input:checked ~ #icon1{
+            color: var(--pinintrest-red);
+        }
+        /*----------------------------------------------------------------------------------*/
+        #card-2 .first-part{
+            background-color: var(--facebook-blue);
+        }
+        #card-2 .profile-pic{
+            box-shadow: 2px 2px 1.5em 2px rgba(59, 89, 152, 0.2);
+        }
+        #card-2 input:checked ~ .tick{
+            border:2px solid var(--facebook-blue);
+        }
+        #card-2 input:checked ~ .tick::after{
+            border: solid var(--facebook-blue);
+            border-width: 0 2px 2px 0;
+        }
+        #card-2 input:checked ~ .first-part{
+            background-color: white;
+        }
+        #card-2 input:checked ~ .remaining-part{
+            background-color: var(--facebook-blue);
+        }
+        #card-2 input:checked ~ #icon2{
+            color: var(--facebook-blue);
+        }
+        /*----------------------------------------------------------------------------------*/
+        #card-3 .first-part{
+            background-color: var(--instagram-pink);
+        }
+        #card-3 .profile-pic{
+            box-shadow: 2px 2px 1.5em 2px rgba(193, 53, 132, 0.2);
+        }
+        #card-3 input:checked ~ .first-part{
+            background-color: white;
+        }
+        #card-3 input:checked ~ .remaining-part{
+            background-color: var(--instagram-pink);
+        }
+        #card-3 input:checked ~ .tick{
+            border:2px solid var(--instagram-pink);
+        }
+        #card-3 input:checked ~ .tick::after{
+            border: solid var(--instagram-pink);
+            border-width: 0 2px 2px 0;
+        }
+        #card-3 input:checked ~ #icon3{
+            color: var(--instagram-pink);
+        }
+        /*----------------------------------------------------------------------------------*/
+        #card-4 .first-part{
+            background-color: var(--behance-blue);
+        }
+        #card-4 .profile-pic{
+            box-shadow: 2px 2px 1.5em 2px rgba(23, 105, 255, 0.2);
+        }
+        #card-4 input:checked ~ .first-part{
+            background-color: white;
+        }
+        #card-4 input:checked ~ .remaining-part{
+            background-color: var(--behance-blue);
+        }
+        #card-4 input:checked ~ .tick{
+            border:2px solid var(--behance-blue);
+        }
+        #card-4 input:checked ~ .tick::after{
+            border: solid var(--behance-blue);
+            border-width: 0 2px 2px 0;
+        }
+        #card-4 input:checked ~ #icon4{
+            color: var(--behance-blue);
+        }
+        /*----------------------------------------------------------------------------------*/
+        #card-5 .first-part{
+            background-color: var(--dribble-pink);
+        }
+        #card-5 .profile-pic{
+            box-shadow: 2px 2px 1.5em 2px  rgba(234, 76, 137,0.2);
+        }
+        #card-5 input:checked ~ .first-part{
+            background-color: white;
+        }
+        #card-5 input:checked ~ .remaining-part{
+            background-color: var(--dribble-pink);
+        }
+        #card-5 input:checked ~ .tick{
+            border:2px solid var(--dribble-pink);
+        }
+        #card-5 input:checked ~ .tick::after{
+            border: solid var(--dribble-pink);
+            border-width: 0 2px 2px 0;
+        }
+        #card-5 input:checked ~ #icon5{
+            color: var(--dribble-pink);
+        }
+        /*----------------------------------------------------------------------------------*/
+        #card-6 .first-part{
+            background-color: var(--twitter-blue);
+        }
+        #card-6 .profile-pic{
+            box-shadow: 2px 2px 1.5em 2px rgba(29, 161, 242, 0.2);
+        }
+        #card-6 input:checked ~ .first-part{
+            background-color: white;
+        }
+        #card-6 input:checked ~ .remaining-part{
+            background-color: var(--twitter-blue);
+        }
+        #card-6 input:checked ~ .tick{
+            border:2px solid var(--twitter-blue);
+        }
+        #card-6 input:checked ~ .tick::after{
+            border: solid var(--twitter-blue);
+            border-width: 0 2px 2px 0;
+        }
+        #card-6 input:checked ~ #icon6{
+            color: var(--twitter-blue);
+        }
+        /*----------------------------------------------------------------------------------*/
+        #card-7 .first-part{
+            background-color: var(--blogger-orange);
+        }
+        #card-7 .profile-pic{
+            box-shadow: 2px 2px 1.5em 2px rgba(255, 128, 0, 0.2);
+        }
+        #card-7 input:checked ~ .first-part{
+            background-color: white;
+        }
+        #card-7 input:checked ~ .remaining-part{
+            background-color: var(--blogger-orange);
+        }
+        #card-7 input:checked ~ .tick{
+            border:2px solid var(--blogger-orange);
+        }
+        #card-7 input:checked ~ .tick::after{
+            border: solid var(--blogger-orange);
+            border-width: 0 2px 2px 0;
+        }
+        #card-7 input:checked ~ #icon7{
+            color: var(--blogger-orange);
+        }
+        /*----------------------------------------------------------------------------------*/
+        #card-8 .first-part{
+            background-color: var(--linkedin-blue);
+        }
+        #card-8 .profile-pic{
+            box-shadow: 2px 2px 1.5em 2px rgba(0, 114, 177, 0.2);
+        }
+        #card-8 input:checked ~ .first-part{
+            background-color: white;
+        }
+        #card-8 input:checked ~ .remaining-part{
+            background-color: var(--linkedin-blue);
+        }
+        #card-8 input:checked ~ .tick{
+            border:2px solid var(--linkedin-blue);
+        }
+        #card-8 input:checked ~ .tick::after{
+            border: solid var(--linkedin-blue);
+            border-width: 0 2px 2px 0;
+        }
+        #card-8 input:checked ~ #icon8{
+            color: var(--linkedin-blue);
+        }
+
+        /*----------------------------------------------------------------------------------*/
+        .profile-pic{
+            height: 75px;
+            width: 75px;
+            background-image: url('https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-suliman-sallehi-1704488.jpg&fm=jpg');
+            background-size: cover;
+            background-position: center ;
+            border: 5px solid white;
+            position: absolute;
+            border-radius: 50%; 
+            margin-left: 50%;
+            transform: translateX(-50%)translateY(-50%);
+        }
+        .name{
+            margin-top: 10%;
+            transform: translateX(0%)translateY(-25%);
+            font-family: 'Playball', cursive;
+            font-weight: 100;
+            font-size: 20px;
+        }
+        .description{
+            margin-left: 15%;
+            margin-right: 15%;
+            /* text-indent: 5px; */
+            font-size: 13px;
+            font-family: 'Nunito Sans', sans-serif;
+            text-align: center;
+            transform: translateX(0%) translateY(-50%);
+        }
+        .social-media-handles{
+            display: flex;
+            width: 60%;
+            justify-content: space-between;
+            transform: translateX(0%)translateY(-25%);
+        }
+        .first-part{
+            /* height: 25%; */
+            height: calc(0.25 * 325px);
+            background-color: white;
+        }
+        .remaining-part{
+            /* height: 75%; */
+            height: calc(0.75 * 325px);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="whole">
+        <label for="ch1" class="card" id="card-1">
+            <input type="checkbox" id="ch1"class="top-icon-right">
+            <i class="fa-brands fa-pinterest-p top-icon-left" id="icon1"></i>
+            <span class="tick"></span>
+            <div class="first-part">
+            </div>
+            <div class="profile-pic"></div>            
+            <div class="remaining-part">
+                <h3 class="name">Melinda Cole</h3>
+                <p class="description">Hello! I am Jerry, creating beautiful interfaces is my passion. I love reading, nature and music.</p>
+                <div class="social-media-handles">
+                    <i class="fa fa-brands fa-twitter"></i>
+                    <i class="fa fa-brands fa-linkedin-in"></i>
+                    <i class="fa-brands fa-dribbble"></i>
+                    <i class="fa fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-behance"></i>
+                </div>
+            </div>
+        </label>
+
+        <label for="ch2" class="card" id="card-2">
+            <input type="checkbox" id="ch2"class="top-icon-right">
+            <i class="fa fa-brands fa-facebook-f top-icon-left" id="icon2"></i>
+            <span class="tick"></span>
+            <div class="first-part">
+            </div>
+            <img src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-suliman-sallehi-1704488.jpg&fm=jpg"alt="" class="profile-pic" >
+            <div class="remaining-part">
+                <h3 class="name">Samule Robinson</h3>
+                <p class="description">Hello! I am Jerry, creating beautiful interfaces is my passion. I love reading, nature and music.</p>
+                <div class="social-media-handles">
+                    <i class="fa fa-brands fa-twitter"></i>
+                    <i class="fa fa-brands fa-linkedin-in"></i>
+                    <i class="fa-brands fa-dribbble"></i>
+                    <i class="fa fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-behance"></i>
+                </div>
+            </div>
+        </label>
+
+        <label for="ch3" class="card" id="card-3">
+            <input type="checkbox" id="ch3"class="top-icon-right" >
+            <i class="fa fa-brands fa-instagram top-icon-left" id="icon3"></i>
+            <span class="tick tick-insta"></span>
+            <div class="first-part">
+                <div class="top-icons">
+                </div>
+            </div>
+            <div class="profile-pic"></div>            
+            <div class="remaining-part">
+                <h3 class="name">Jerry Gomez</h3>
+                <p class="description">Hello! I am Jerry, creating beautiful interfaces is my passion. I love reading, nature and music.</p>
+                <div class="social-media-handles">
+                    <i class="fa fa-brands fa-twitter"></i>
+                    <i class="fa fa-brands fa-linkedin-in"></i>
+                    <i class="fa-brands fa-dribbble"></i>
+                    <i class="fa fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-behance"></i>
+                </div>
+            </div>
+        </label>
+
+        <label for="ch4" class="card" id="card-4">
+            <input type="checkbox" id="ch4"class="top-icon-right">
+            <i class="fa-brands fa-behance top-icon-left" id="icon4"></i>
+            <span class="tick"></span>
+            <div class="first-part">
+            </div>
+            <div class="profile-pic"></div>            
+            <div class="remaining-part">
+                <h3 class="name">Ron Lee</h3>
+                <p class="description">Hello! I am Jerry, creating beautiful interfaces is my passion. I love reading, nature and music.</p>
+                <div class="social-media-handles">
+                    <i class="fa fa-brands fa-twitter"></i>
+                    <i class="fa fa-brands fa-linkedin-in"></i>
+                    <i class="fa-brands fa-dribbble"></i>
+                    <i class="fa fa-brands fa-facebook-f"></i>
+                    <i class="fa fa-brands fa-instagram"></i>
+                </div>
+            </div>
+        </label>
+
+        <label for="ch5" class="card" id="card-5">
+            <input type="checkbox" id="ch5"class="top-icon-right">
+            <i class="fa-brands fa-dribbble top-icon-left" id="icon5"></i>
+            <span class="tick"></span>
+            <div class="first-part">
+            </div>
+            <div class="profile-pic"></div>            
+            <div class="remaining-part">
+                <h3 class="name">Suzy Cole</h3>
+                <p class="description">Hello! I am Jerry, creating beautiful interfaces is my passion. I love reading, nature and music.</p>
+                <div class="social-media-handles">
+                    <i class="fa-brands fa-behance"></i>
+                    <i class="fa fa-brands fa-linkedin-in"></i>
+                    <i class="fa fa-brands fa-twitter"></i>
+                    <i class="fa fa-brands fa-facebook-f"></i>
+                    <i class="fa fa-brands fa-instagram"></i>
+                </div>
+            </div>
+        </label>
+
+        <label for="ch6" class="card" id="card-6">
+            <input type="checkbox" id="ch6"class="top-icon-right">
+            <i class="fa fa-brands fa-twitter top-icon-left" id="icon6"></i>
+            <span class="tick tick-twitter"></span>
+            <div class="first-part"> 
+            </div>
+            <div class="profile-pic"></div>            
+            <div class="remaining-part">
+                <h3 class="name">William Stewart</h3>
+                <p class="description">Hello! I am Jerry, creating beautiful interfaces is my passion. I love reading, nature and music.</p>
+                <div class="social-media-handles">
+                    <i class="fa-brands fa-behance"></i>
+                    <i class="fa fa-brands fa-linkedin-in"></i>
+                    <i class="fa-brands fa-dribbble"></i>
+                    <i class="fa fa-brands fa-facebook-f"></i>
+                    <i class="fa fa-brands fa-instagram"></i>
+                </div>
+            </div>
+        </label>
+
+        <label for="ch7" class="card" id="card-7">
+            <input type="checkbox" id="ch7"class="top-icon-right">
+            <i class="fa fa-brands fa-blogger-b top-icon-left" id="icon7"></i>
+            <span class="tick"></span>
+            <div class="first-part">
+            </div>
+            <div class="profile-pic"></div>            
+            <div class="remaining-part">
+                <h3 class="name">Donald Richardson</h3>
+                <p class="description">Hello! I am Jerry, creating beautiful interfaces is my passion. I love reading, nature and music.</p>
+                <div class="social-media-handles">
+                    <i class="fa fa-brands fa-twitter"></i>
+                    <i class="fa fa-brands fa-linkedin-in"></i>
+                    <i class="fa-brands fa-dribbble"></i>
+                    <i class="fa fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-behance"></i>
+                </div>
+            </div>
+        </label>
+
+        <label for="ch8" class="card" id="card-8">
+            <input type="checkbox" id="ch8"class="top-icon-right">
+            <i class="fa fa-brands fa-linkedin-in top-icon-left" id="icon8"></i>
+            <span class="tick"></span>
+            <div class="first-part">
+            </div>
+            <div class="profile-pic"></div>
+            <div class="remaining-part">
+                <h3 class="name">Alyssa Silva</h3>
+                <p class="description">Hello! I am Jerry, creating beautiful interfaces is my passion. I love reading, nature and music.</p>
+                <div class="social-media-handles">
+                    <i class="fa fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-behance"></i>
+                    <i class="fa-brands fa-dribbble"></i>
+                    <i class="fa fa-brands fa-facebook-f"></i>
+                    <i class="fa fa-brands fa-instagram"></i>
+                </div>
+            </div>
+        </div>
+    </label>
+</body>
+</html>
